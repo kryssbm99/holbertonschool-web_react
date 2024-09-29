@@ -1,22 +1,36 @@
-// Define the Teacher interface
-interface Teacher {
-    readonly firstName: string;
-    readonly lastName: string;
-    fullTimeEmployee: boolean;
-    yearsOfExperience?: number; // Optional property
-    location: string;
-    [propName: string]: any; // Index signature to allow any additional property
+// Define the interface for the constructor
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
+
+// Define the interface for the class
+interface StudentClassInterface {
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+// Implement the StudentClass that adheres to the interface
+class StudentClass implements StudentClassInterface {
+  firstName: string;
+  lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
-  
-  // Create a teacher object using the interface
-  const teacher3: Teacher = {
-    firstName: 'John',
-    fullTimeEmployee: false,
-    lastName: 'Doe',
-    location: 'London',
-    contract: false,
-  };
-  
-  // Log the object to verify the structure
-  console.log(teacher3);
-  
+
+  // Method that returns 'Currently working'
+  workOnHomework(): string {
+    return "Currently working";
+  }
+
+  // Method that returns the firstName of the student
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
+// Test the class with an example
+const student1 = new StudentClass('John', 'Doe');
+console.log(student1.displayName()); // Output: John
+console.log(student1.workOnHomework()); // Output: Currently working
