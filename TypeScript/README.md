@@ -1,0 +1,1 @@
+Welcome to my TypeScript Basic training!
